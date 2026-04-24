@@ -1,4 +1,5 @@
 from fastapi import FastAPI # Importing FastAPI (Class),Anything starts with first letter is an class.
+from routers import metrics, aws
 
 app = FastAPI(
     title="Internal DevOps Utilities API",
@@ -14,3 +15,7 @@ def hello():
     This is a Hello API , just for testing
     """
     return {"message":"Hello Dosto, This is DevOps Utilites API"} #api returns json & keys
+
+
+app.include_router(metrics.router)
+app.include_router(aws.router, prefix="/aws")
